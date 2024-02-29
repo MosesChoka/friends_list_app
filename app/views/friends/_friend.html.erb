@@ -10,6 +10,13 @@
     <%= friend.last_name %>
   </p>
 
+  <% if friend.images.attached? %>
+    <% friend.images.each do |image| %>
+      <%= image_tag(image, height: 100) %>
+      <br />
+    <% end %>
+  <% end %>
+
   <p>
     <strong>Phone:</strong>
     <%= friend.phone %>

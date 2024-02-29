@@ -57,6 +57,13 @@ class FriendsController < ApplicationController
     end
   end
 
+  def remove_image
+    @image = ActiveStorage::Attachment.find(params[:id])
+    @image.purge_later
+    redirect_back(fallback_location: request.referer)
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_friend
@@ -65,6 +72,6 @@ class FriendsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def friend_params
-      params.require(:friend).permit(:first_name, :last_name, :phone, :email_address, :twitter)
+      params.require(:friend).permit(:first_name, :last_name, :phone, :email_address, :twitter, images: [])
     end
 end

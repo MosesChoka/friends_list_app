@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :friends
+  resources :friends do
+    member do
+
+      delete :remove_image
+    end
+  end
   root 'page#home'
   get 'page/home'
   get 'page/about'

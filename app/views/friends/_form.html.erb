@@ -12,6 +12,20 @@
   <% end %>
 
   
+  <div>
+    <%= form.label :images, "Upload images" %>
+    <% if friend.images.attached? %>
+      <% friend.images.each do |image| %>
+        <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
+        <%= image_tag(image, height: 100) %>
+        <%= link_to 'Remove', remove_image_friend_path(image), data: { confirm: 'Are you sur?', turbo_method: :delete } %>
+        <br />
+      <% end %>
+    <% end %>
+    <%= form.file_field :images, multiple:true %>
+  </div>
+
+  </div>
   <div class="field form-group">
     <%= form.text_field :first_name, class:"form-control", placeholder:"First Name" %>
   </div>
@@ -28,12 +42,12 @@
   <br></br>
 
   <div class="field form-group">
-    <%= form.text_field :email_address, class:"form-control", placeholder:"email" %>
+    <%= form.text_field :team, class:"form-control", placeholder:"team" %>
   </div>
   <br></br>
 
   <div>
-    <%= form.text_field :twitter, class:"form-control", placeholder:"@yourhandle" %>
+    <%= form.text_field :zone, class:"form-control", placeholder:"zone" %>
   </div>
   <br></br>
   <div>
