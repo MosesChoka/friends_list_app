@@ -11,20 +11,10 @@
     </div>
   <% end %>
 
-  
   <div>
-    <%= form.label :images, "Upload images" %>
-    <% if friend.images.attached? %>
-      <% friend.images.each do |image| %>
-        <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
-        <%= image_tag(image, height: 100) %>
-        <%= link_to 'Remove', remove_image_friend_path(image), data: { confirm: 'Are you sur?', turbo_method: :delete } %>
-        <br />
-      <% end %>
-    <% end %>
-    <%= form.file_field :images, multiple:true %>
-  </div>
-
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+    <%#= link_to 'Remove', remove_image_friend_path, data: { confirm: 'Are you sure?', turbo_method: :delete } %>
   </div>
   <div class="field form-group">
     <%= form.text_field :first_name, class:"form-control", placeholder:"First Name" %>
